@@ -15,7 +15,7 @@ builder.Services.AddDbContext<ToDoDbContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 // --- 2. הגדרת אבטחת JWT (חלק מהאתגר) ---
-// הערה למורה: הגדרת מפתח סודי לאימות הטוקנים
+//  הגדרת מפתח סודי לאימות הטוקנים
 var key = Encoding.ASCII.GetBytes("YourVerySecretKey1234567890123456");
 
 builder.Services.AddAuthentication(options =>
@@ -54,21 +54,21 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// --- 4. הגדרת ה-Middlewares (הסדר כאן קריטי!) ---
+// --- 4. הגדרת ה-Middlewares ---
 app.UseCors("AllowAll");
 
 app.UseSwagger();
 app.UseSwaggerUI(options =>
 {
     options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-    options.RoutePrefix = string.Empty; // זה יגרום ל-Swagger להיפתח ישר כשנכנסים לכתובת הראשית!
+    options.RoutePrefix = string.Empty;
 });
 
 app.UseAuthentication(); // בדיקת הטוקן ב-Header של הבקשה
 app.UseAuthorization();  // בדיקה האם למשתמש המאומת יש הרשאה לגשת
 
 // --- פונקציית עזר להפקת JWT Token ---
-// הערה למורה: הפונקציה מקבלת משתמש ומייצרת טוקן המכיל Claims (מזהה ושם)
+// הפונקציה מקבלת משתמש ומייצרת טוקן המכיל Claims (מזהה ושם)
 string GenerateToken(User user) {
     var tokenHandler = new JwtSecurityTokenHandler();
     var tokenDescriptor = new SecurityTokenDescriptor
