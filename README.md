@@ -1,4 +1,5 @@
 Fullstack To-Do App
+
 This project is a comprehensive task management system built to demonstrate advanced fullstack
 capabilities, specifically focusing on secure user authentication and personalized data management.
 
