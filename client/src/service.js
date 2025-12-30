@@ -1,8 +1,7 @@
 import axios from 'axios';
 
-const apiUrl = "http://localhost:5072";
+const apiUrl = "https://todo-api-server-o7s4.onrender.com";
 axios.defaults.baseURL = apiUrl;
-
 // --- Axios Interceptors (אתגר ה-JWT) ---
 
 // 1. הזרקת הטוקן לכל בקשה שיוצאת לשרת
