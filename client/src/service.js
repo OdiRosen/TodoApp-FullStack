@@ -30,11 +30,11 @@ axios.interceptors.response.use(
 
 export default {
   // הרשמת משתמש חדש
-  register: async (username, password) => {
-    const result = await axios.post(`/register`, { username, password });
-    return result.data;
-  },
-
+register: async (username, password) => {
+  const result = await axios.post(`/register`, { id: 0, username, password });
+  return result.data;
+},
+  
   // התחברות ושמירת הטוקן ב-LocalStorage
   login: async (username, password) => {
     const result = await axios.post(`/login`, { username, password });
