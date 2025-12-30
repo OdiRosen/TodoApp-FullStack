@@ -56,8 +56,6 @@ var app = builder.Build();
 
 // --- 4. הגדרת ה-Middlewares (הסדר כאן קריטי!) ---
 app.UseCors("AllowAll");
-app.UseAuthentication(); // בדיקת הטוקן ב-Header של הבקשה
-app.UseAuthorization();  // בדיקה האם למשתמש המאומת יש הרשאה לגשת
 
 app.UseSwagger();
 app.UseSwaggerUI(options =>
@@ -65,6 +63,9 @@ app.UseSwaggerUI(options =>
     options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
     options.RoutePrefix = string.Empty; // זה יגרום ל-Swagger להיפתח ישר כשנכנסים לכתובת הראשית!
 });
+
+app.UseAuthentication(); // בדיקת הטוקן ב-Header של הבקשה
+app.UseAuthorization();  // בדיקה האם למשתמש המאומת יש הרשאה לגשת
 
 // --- פונקציית עזר להפקת JWT Token ---
 // הערה למורה: הפונקציה מקבלת משתמש ומייצרת טוקן המכיל Claims (מזהה ושם)
