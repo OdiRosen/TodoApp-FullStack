@@ -20,16 +20,17 @@ function App() {
 
   // --- לוגיקת אימות (Authentication) ---
 
-  async function handleLogin(e) {
-    if (e) e.preventDefault();
-    try {
-      await service.login(username, password);
-      setToken(localStorage.getItem('token')); // טעינת הטוקן לסטייט כדי לרענן את ה-UI
-    } catch (error) {
-      alert("שם משתמש או סיסמה שגויים");
+async function handleLogin(e) {
+  if (e) e.preventDefault();
+  try {
+    const data = await service.login(username, password);
+    if (data && data.token) {
+      setToken(data.token); // זה יגרום למסך להתחלף מיד לרשימת המטלות
     }
+  } catch (error) {
+    alert("שם משתמש או סיסמה שגויים");
   }
-
+}
   async function handleRegister(e) {
     e.preventDefault();
     try {
